@@ -28,7 +28,7 @@ class SARSA(BaseAlgorithm):
             discount_factor (float): Discount factor for future rewards.
         """
         super().__init__(
-            control_type=ControlType.SARSA,
+            control_type=ControlType.TEMPORAL_DIFFERENCE,
             num_of_action=num_of_action,
             action_range=action_range,
             discretize_state_weight=discretize_state_weight,
