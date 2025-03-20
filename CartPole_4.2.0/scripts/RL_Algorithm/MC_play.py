@@ -107,7 +107,7 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
     )
 
     task_name = str(args_cli.task).split('-')[0]  # Stabilize, SwingUp
-    name_train = "Train_2"
+    name_train = "MC_2"
     Algorithm_name = "MC"  
     episode = 5900
     q_value_file = f"{Algorithm_name}_{episode}_{num_of_action}_{action_range[1]}_{discretize_state_weight[0]}_{discretize_state_weight[1]}.json"
