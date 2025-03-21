@@ -111,14 +111,14 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
     action_range = [-15, 15]  # [min, max]
     discretize_state_weight = [5, 5, 2, 2]  # [pose_cart:int, pose_pole:int, vel_cart:int, vel_pole:int]
     learning_rate = 0.1
-    n_episodes = 6000
+    n_episodes = 10000
     start_epsilon = 1.0
     epsilon_decay = 0.9995  # reduce the exploration over time
     final_epsilon = 0.01
     discount = 0.99
 
     task_name = str(args_cli.task).split('-')[0]  # Stabilize, SwingUp
-    name_train = "MC_2"
+    name_train = "MC_1"
     Algorithm_name = "MC"
     agent = MC(
         num_of_action=num_of_action,

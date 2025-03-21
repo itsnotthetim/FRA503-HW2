@@ -115,10 +115,16 @@ class BaseAlgorithm():
             int: Chosen discrete action index.
         """
         # ========= put your code here =========#
-        if np.random.rand() < self.epsilon:
-            return np.random.randint(self.num_of_action) # Exploration
+        if self.control_type == ControlType.DOUBLE_Q_LEARNING:
+            if np.random.rand() < self.epsilon:
+                return np.random.randint(self.num_of_action) # Exploration
+            else:
+                return np.argmax(self.qa_values[obs_dis] + self.qb_values[obs_dis]) # Exploitation
         else:
-            return np.argmax(self.q_values[obs_dis]) # Exploitation
+            if np.random.rand() < self.epsilon:
+                return np.random.randint(self.num_of_action) # Exploration
+            else:
+                return np.argmax(self.q_values[obs_dis]) # Exploitation
         # ======================================#
     
     def mapping_action(self, action):
