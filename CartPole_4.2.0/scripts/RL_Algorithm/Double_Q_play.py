@@ -85,13 +85,17 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
     # ========================= Can be modified ========================== #
 
     # hyperparameters
-    num_of_action = 19
-    action_range = [-15, 15]  # [min, max]
+    num_of_action = 19 # Double_Q_1,3
+    # num_of_action = 9 # Double_Q_2
+    action_range = [-15, 15]  # [min, max] # Double_Q_1,3
+    # action_range = [-5, 5]  # [min, max] # Double_Q_2
     discretize_state_weight = [5, 5, 2, 2]  # [pose_cart:int, pose_pole:int, vel_cart:int, vel_pole:int]
-    learning_rate = 0.1
-    n_episodes = 10000
+    # learning_rate = 0.1 
+    learning_rate = 0.5 # Double_Q_3
+    n_episodes = 10000 # Double_Q_1,2
     start_epsilon = 1.0
-    epsilon_decay = 0.9995  # reduce the exploration over time
+    # epsilon_decay = 0.9995  # Double_Q_1,2
+    epsilon_decay = 0.9996  # Double_Q_3
     final_epsilon = 0.01
     discount = 0.99
 
@@ -107,9 +111,9 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
     )
 
     task_name = str(args_cli.task).split('-')[0]  # Stabilize, SwingUp
-    name_train = "Double_Q_1"
+    name_train = "Double_Q_3"
     Algorithm_name = "Double_Q_Learning"  
-    episode = 10000
+    episode = 9900
     q_value_file = f"{Algorithm_name}_{episode}_{num_of_action}_{action_range[1]}_{discretize_state_weight[0]}_{discretize_state_weight[1]}.json"
     full_path = os.path.join(f"q_value/{task_name}", Algorithm_name,name_train)
     os.makedirs(full_path, exist_ok=True)  # สร้างโฟลเดอร์หากยังไม่มี

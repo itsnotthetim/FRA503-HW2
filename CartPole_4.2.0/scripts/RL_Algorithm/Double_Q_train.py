@@ -10,6 +10,7 @@ from omni.isaac.lab.app import AppLauncher
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
+import numpy as np
 import wandb
 wandb.login(key="88baa274f550d2a9eee583bbb7bef8d179637368")
 from RL_Algorithm.Algorithm.Double_Q_Learning import Double_Q_Learning
@@ -107,20 +108,22 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
     # ========================= Can be modified ========================== #
 
     # hyperparameters
-    # num_of_action = 19 # Double_Q_1
-    num_of_action = 9 # Double_Q_2
-    # action_range = [-15, 15]  # [min, max] # Double_Q_1
-    action_range = [-5, 5]  # [min, max] # Double_Q_2
+    num_of_action = 19 # Double_Q_1,3
+    # num_of_action = 9 # Double_Q_2
+    action_range = [-15, 15]  # [min, max] # Double_Q_1,3
+    # action_range = [-5, 5]  # [min, max] # Double_Q_2
     discretize_state_weight = [5, 5, 2, 2]  # [pose_cart:int, pose_pole:int, vel_cart:int, vel_pole:int]
-    learning_rate = 0.1
+    # learning_rate = 0.1 
+    learning_rate = 0.5 # Double_Q_3
     n_episodes = 10000 # Double_Q_1,2
     start_epsilon = 1.0
-    epsilon_decay = 0.9995  # Double_Q_1,2
+    # epsilon_decay = 0.9995  # Double_Q_1,2
+    epsilon_decay = 0.9996  # Double_Q_3
     final_epsilon = 0.01
     discount = 0.99
 
     task_name = str(args_cli.task).split('-')[0]  # Stabilize, SwingUp
-    name_train = "Double_Q_2"
+    name_train = "Double_Q_3"
     Algorithm_name = "Double_Q_Learning"
     agent = Double_Q_Learning(
         num_of_action=num_of_action,
@@ -183,12 +186,16 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
 
                 sum_count += count
                 sum_reward += cumulative_reward
+
+                # Compute average Q-value
+                avg_q_value = np.mean([np.mean(q) for q in agent.q_values.values()])
                 
                 # Log metrics to WandB
                 wandb.log({
                     "episode": episode,
                     "cumulative_reward": cumulative_reward,
-                    "epsilon": agent.epsilon,
+                    "avg_q_value": avg_q_value,
+                    "epsilon": agent.epsilon
                 })
 
                 if episode % 100 == 0:
