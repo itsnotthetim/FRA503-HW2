@@ -118,7 +118,7 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
     discount = 0.99
 
     task_name = str(args_cli.task).split('-')[0]  # Stabilize, SwingUp
-    name_train = "MC_1"
+    name_train = "MC_test_1"
     Algorithm_name = "MC"
     agent = MC(
         num_of_action=num_of_action,

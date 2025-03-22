@@ -107,12 +107,13 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
     # ========================= Can be modified ========================== #
 
     # hyperparameters
-    # num_of_action = 19 # Double_Q_1
-    num_of_action = 9 # Double_Q_2
-    # action_range = [-15, 15]  # [min, max] # Double_Q_1
-    action_range = [-5, 5]  # [min, max] # Double_Q_2
+    num_of_action = 19 # Double_Q_1,3
+    # num_of_action = 9 # Double_Q_2
+    action_range = [-15, 15]  # [min, max] # Double_Q_1,3
+    # action_range = [-5, 5]  # [min, max] # Double_Q_2
     discretize_state_weight = [5, 5, 2, 2]  # [pose_cart:int, pose_pole:int, vel_cart:int, vel_pole:int]
-    learning_rate = 0.1
+    # learning_rate = 0.1
+    learning_rate = 0.5 # Double_Q_3
     n_episodes = 10000 # Double_Q_1,2
     start_epsilon = 1.0
     epsilon_decay = 0.9995  # Double_Q_1,2
@@ -120,7 +121,7 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
     discount = 0.99
 
     task_name = str(args_cli.task).split('-')[0]  # Stabilize, SwingUp
-    name_train = "Double_Q_2"
+    name_train = "Double_Q_test"
     Algorithm_name = "Double_Q_Learning"
     agent = Double_Q_Learning(
         num_of_action=num_of_action,

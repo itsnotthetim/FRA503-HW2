@@ -108,19 +108,20 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
 
     # hyperparameters
     num_of_action = 9
-    action_range = [-5, 5]  # [min, max]
-    discretize_state_weight = [3, 3, 3, 3]  # [pose_cart:int, pose_pole:int, vel_cart:int, vel_pole:int]
-    learning_rate = 0.2
+    action_range = [-10, 10]  # [min, max]
+    discretize_state_weight = [3, 3, 5, 5]  # [pose_cart:int, pose_pole:int, vel_cart:int, vel_pole:int]
+    learning_rate = 0.3
     n_episodes = 10000
     start_epsilon = 1.0
     # epsilon_decay = 0.999 # Q_1
     # epsilon_decay = 0.9995 # Q_2
     epsilon_decay = 0.9997 # Q_3
+    # epsilon_decay = 0.993 # Q_3
     final_epsilon = 0.01
-    discount = 0.99
+    discount = 0.98
 
     task_name = str(args_cli.task).split('-')[0]  # Stabilize, SwingUp
-    name_train = "Q_3"
+    name_train = "Q_test"
     Algorithm_name = "Q_Learning"
     agent = Q_Learning(
         num_of_action=num_of_action,

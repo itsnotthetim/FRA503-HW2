@@ -1,0 +1,28 @@
+{
+    "os": "Linux-6.8.0-52-generic-x86_64-with-glibc2.35",
+    "python": "3.10.16",
+    "heartbeatAt": "2025-03-21T20:41:43.824990",
+    "startedAt": "2025-03-21T20:41:42.391988",
+    "docker": null,
+    "gpu": "NVIDIA GeForce RTX 3080 Laptop GPU",
+    "gpu_count": 1,
+    "cpu_count": 16,
+    "cuda": null,
+    "args": [
+        "--task",
+        "Stabilize-Isaac-Cartpole-v0",
+        "--headless"
+    ],
+    "state": "running",
+    "program": "/home/tim/Documents/GitHub/FRA503-HW2/CartPole_4.2.0/scripts/RL_Algorithm/Q_train.py",
+    "codePath": "CartPole_4.2.0/scripts/RL_Algorithm/Q_train.py",
+    "git": {
+        "remote": "https://github.com/itsnotthetim/FRA503-HW2.git",
+        "commit": "3de7682ae562a3bfb6a0aad65f3a2ccf50c0ff15"
+    },
+    "email": "itim_smile@hotmail.com",
+    "root": "/home/tim/Documents/GitHub/FRA503-HW2",
+    "host": "Tim",
+    "username": "tim",
+    "executable": "/home/tim/yes/envs/isaaclab/bin/python"
+}
