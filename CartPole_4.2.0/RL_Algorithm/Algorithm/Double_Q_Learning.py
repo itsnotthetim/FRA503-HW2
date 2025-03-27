@@ -63,7 +63,7 @@ class Double_Q_Learning(BaseAlgorithm):
             self.qa_values[state][action_idx] += self.lr * (reward_value + self.discount_factor * self.qb_values[next_state][np.argmax(self.qa_values[next_state])] - self.qa_values[state][action_idx])
         else:  # Update Q_B using Q_A for evaluation
             # If Update(B)
-            self.qb_values[state][action_idx] = self.lr * (reward_value + self.discount_factor * self.qa_values[next_state][np.argmax(self.qb_values[next_state])] - self.qb_values[state][action_idx])
+            self.qb_values[state][action_idx] += self.lr * (reward_value + self.discount_factor * self.qa_values[next_state][np.argmax(self.qb_values[next_state])] - self.qb_values[state][action_idx])
         
         self.q_values[state][action_idx] = self.qa_values[state][action_idx] + self.qb_values[state][action_idx]
         #======================================#
