@@ -104,12 +104,12 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
         epsilon_decay=epsilon_decay,
         final_epsilon=final_epsilon,
         discount_factor=discount
-    )
+    )   
 
     task_name = str(args_cli.task).split('-')[0]  # Stabilize, SwingUp
-    name_train = "MC_test_1"
+    name_train = "MC_test_1-1"
     Algorithm_name = "MC"
-    episode = 9900
+    episode = 8500
     q_value_file = f"{Algorithm_name}_{episode}_{num_of_action}_{action_range[1]}_{discretize_state_weight[0]}_{discretize_state_weight[1]}.json"
     full_path = os.path.join(f"q_value/{task_name}", Algorithm_name,name_train)
     os.makedirs(full_path, exist_ok=True)  # สร้างโฟลเดอร์หากยังไม่มี

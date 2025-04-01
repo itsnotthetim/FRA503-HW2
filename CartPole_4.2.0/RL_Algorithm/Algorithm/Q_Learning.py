@@ -44,6 +44,7 @@ class Q_Learning(BaseAlgorithm):
         self,
         obs,
         action_idx,
+        # done,
         reward_value,
         next_obs
 
@@ -60,5 +61,5 @@ class Q_Learning(BaseAlgorithm):
         current_q = self.q_values[state][action_idx]
         # Q-learning formula: Q(s,a) ← Q(s,a) + α[r + γmaxQ(s',a') - Q(s,a)]
         self.q_values[state][action_idx] = current_q + self.lr * (
-            reward_value + self.discount_factor * max_future_q - current_q
+            reward_value + (self.discount_factor * max_future_q) - current_q
         )

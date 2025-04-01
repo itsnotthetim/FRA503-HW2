@@ -107,15 +107,15 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
     # ========================= Can be modified ========================== #
 
     # hyperparameters
-    num_of_action = 9
-    action_range = [-10, 10]  # [min, max]
-    discretize_state_weight = [10, 10, 5, 5]  # [pose_cart:int, pose_pole:int, vel_cart:int, vel_pole:int]
-    learning_rate = 0.05
+    num_of_action = 19
+    action_range = [-15, 15]  # [min, max]
+    discretize_state_weight = [5, 5, 2, 2]  # [pose_cart:int, pose_pole:int, vel_cart:int, vel_pole:int]
+    learning_rate = 0.5
     n_episodes = 10000
     start_epsilon = 1.0
-    epsilon_decay = 0.9996 # Q_3
+    epsilon_decay = 0.9995 # Q_3
     final_epsilon = 0.01
-    discount = 0.97
+    discount = 0.99
 
     task_name = str(args_cli.task).split('-')[0]  # Stabilize, SwingUp
     name_train = "Q_test_2  "

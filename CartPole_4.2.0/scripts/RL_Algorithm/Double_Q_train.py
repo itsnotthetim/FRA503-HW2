@@ -177,7 +177,7 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
 
                     done = terminated or truncated
 
-                    agent.update(obs, action_idx, reward_value, next_obs)
+                    agent.update(obs, action_idx, done, reward_value, next_obs)
 
                     obs = next_obs
                     count += 1
