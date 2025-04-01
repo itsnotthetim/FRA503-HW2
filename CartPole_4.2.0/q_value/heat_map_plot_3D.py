@@ -5,7 +5,7 @@ from mpl_toolkits.mplot3d import Axes3D
 
 # Load the JSON file
 
-file_path = "CartPole_4.2.0/q_value/Stabilize/MC/MC_test_1-1/MC_8500_19_15_5_5.json"
+file_path = "q_value/Stabilize/MC/MC_test_1/MC_9900_19_15_5_5.json"
 with open(file_path, "r") as file:
     data = json.load(file)
 
@@ -46,7 +46,7 @@ cbar.set_label("Max Q-Value")
 ax.set_xlabel("Cart Position")
 ax.set_ylabel("Pole Position")
 ax.set_zlabel("Max Q-Value")
-ax.set_title("3D Surface Plot of Q-Values")
+ax.set_title("Monte Carlo 3D Heatmap Plot of Q-Values")
 
 # Show plot
 plt.show()
