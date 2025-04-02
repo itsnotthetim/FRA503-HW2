@@ -1,5 +1,43 @@
 # FRA503-HW2: Stabilizing CartPole
 
+## Table of Contents
+- [FRA503-HW2: Stabilizing CartPole](#fra503-hw2-stabilizing-cartpole)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Objective](#objective)
+  - [1. Which algorithm performs best?](#1-which-algorithm-performs-best)
+    - [1.1 Test all algorithm](#11-test-all-algorithm)
+      - [Assumption](#assumption)
+        - [1. `num_of_action (int)`](#1-num_of_action-int)
+        - [2. `action_range (list)`](#2-action_range-list)
+        - [3. `discretize_state_weight (list)`](#3-discretize_state_weight-list)
+        - [4. `learning_rate (float)`](#4-learning_rate-float)
+        - [5. `n_episodes (int)`](#5-n_episodes-int)
+        - [6. `start_epsilon (float)`](#6-start_epsilon-float)
+        - [7. `epsilon_decay (float)`](#7-epsilon_decay-float)
+        - [8. `final_epsilon (float)`](#8-final_epsilon-float)
+        - [9. `discount (float)` (commonly $\\gamma$)](#9-discount-float-commonly-gamma)
+    - [1.2 Result each Algorithm](#12-result-each-algorithm)
+    - [1.3 Conclusion](#13-conclusion)
+      - [Varidate Stabilize Time](#varidate-stabilize-time)
+    - [1.4 How well the agent learns to receive higher rewards](#14-how-well-the-agent-learns-to-receive-higher-rewards)
+  - [2. Why does MC (GLIE) perform better than the others?](#2-why-does-mc-glie-perform-better-than-the-others)
+    - [2.1 How well the agent with MC performs in the Cart-Pole problem](#21-how-well-the-agent-with-mc-performs-in-the-cart-pole-problem)
+      - [Video Cart-Pole Performance by MC (GLIE) Algorithm](#video-cart-pole-performance-by-mc-glie-algorithm)
+      - [Reward](#reward)
+      - [Stabilize Time (second)](#stabilize-time-second)
+      - [Epsilon Decay Characthalistic](#epsilon-decay-characthalistic)
+    - [2.2 Result Interpretation: GLIE Monte Carlo](#22-result-interpretation-glie-monte-carlo)
+      - [Analysis of Q-Value](#analysis-of-q-value)
+      - [Summary](#summary)
+  - [3. How do the resolutions of the action space and observation space affect the learning process? Why?](#3-how-do-the-resolutions-of-the-action-space-and-observation-space-affect-the-learning-process-why)
+    - [1. Action Space Resolution (num\_of\_action)](#1-action-space-resolution-num_of_action)
+      - [Effects on Learning](#effects-on-learning)
+    - [2. Observation Space Resolution (discretize\_state\_weight)](#2-observation-space-resolution-discretize_state_weight)
+      - [Effects on Learning](#effects-on-learning-1)
+  - [Contributor](#contributor)
+
+
 ## Overview
  In this homework, we will work on the Stabilizing Cart-Pole Task, where the goal is to train the agent with learning algorithms (i.e. Q-Learning, Monte-Carlo, Temporal Difference Learning, and Double Q-Learning) to control a cart moving along a frictionless track to keep a pole balanced. The pole starts near an upright position (close to 90° vertical), and the agent must apply the right forces to the cart to prevent it from tipping over. The challenge is to stabilize the system while minimizing unnecessary movement. The episode ends if the pole leans too far or the cart moves too far from the center.
 
@@ -44,7 +82,7 @@ You must evaluate the agent's performance in terms of learning efficiency (i.e.,
 
 ---
 
-#### 3. `discretize_state_weight (list)`
+##### 3. `discretize_state_weight (list)`
 
 - **Definition**: A list of scaling factors used to **discretize** each dimension of the (continuous) observation vector. For example, in a 4-dimensional state $[x, \dot{x}, \theta, \dot{\theta}] $ (cart position, cart velocity, pole angle, pole angular velocity), you might assign separate discrete “bins” for each.  
 - **Interpretation**:  
@@ -368,3 +406,7 @@ discretize_state_weight = [5, 5, 2, 2]  # [pose_cart, pose_pole, vel_cart, vel_p
 - If set `discretize_state_weight = [10, 10, 5, 5]`, it will get even finer discretization → better policies but much slower learning.
 
 - If set `discretize_state_weight = [2, 2, 1, 1]`, it will get coarser discretization → faster learning but might fail to stabilize in edge cases.
+
+## Contributor
+1. Natthaphat Sookpanya 65340500023
+2. Karanyaphas Chitsuebsai 65340500065
